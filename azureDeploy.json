@@ -334,7 +334,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "ApplicationInsightsName": {
+                    "appInsightsName": {
                         "value": "[parameters('ApplicationInsightsName')]"
                     },
                     "appInsightsRegion": {
