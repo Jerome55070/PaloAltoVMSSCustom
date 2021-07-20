@@ -63,9 +63,10 @@
             "type": "string",
             "allowedValues": [
                 "latest",
-                "9.1.3"
+                "9.1.3",
+                "10.0.5"
             ],
-            "defaultValue": "latest",
+            "defaultValue": "10.0.5",
             "metadata": {
                 "description": "PAN OS Version"
             }
