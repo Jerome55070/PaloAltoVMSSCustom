@@ -334,7 +334,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "appInsightsName": {
+                    "ApplicationInsightsName": {
                         "value": "[parameters('ApplicationInsightsName')]"
                     },
                     "appInsightsRegion": {
@@ -744,7 +744,7 @@
                     "fwLbBePoolName_3": {
                          "value": "fw-data-backend-pool"
                     },
-                    "appInsightsName": {
+                    "ApplicationInsightsName": {
                         "value": "[parameters('ApplicationInsightsName')]"
                     },
                     "autoScaleMetric": {
