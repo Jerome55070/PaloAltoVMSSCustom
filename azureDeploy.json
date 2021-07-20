@@ -744,7 +744,7 @@
                     "fwLbBePoolName_3": {
                          "value": "fw-data-backend-pool"
                     },
-                    "ApplicationInsightsName": {
+                    "appInsightsName": {
                         "value": "[parameters('ApplicationInsightsName')]"
                     },
                     "autoScaleMetric": {
