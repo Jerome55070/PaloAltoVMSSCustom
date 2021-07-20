@@ -288,7 +288,7 @@
         },
         "vnetrgname": {
             "type": "string",
-            "defaultValue": "SecVnetName",
+            "defaultValue": "RGSecNet01",
             "metadata": {
                 "description": "resoruce group name of the existing security vnet"
 			}
@@ -389,7 +389,6 @@
                 "parameters":  {}
             }
         },
-
         {
             "condition": "[equals(parameters('deployIntoExistingVnet'), 'No')]",
             "name": "SetupNSG",
@@ -445,7 +444,7 @@
             "name": "SetupVNET",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2021-04-01",
-            "ResourceGroup": "[parameters('vnetrgname')]",
+            "resourceGroup": "[parameters('vnetrgname')]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/SetupNSG",
                 "Microsoft.Resources/deployments/SetupDefaultUDR"
