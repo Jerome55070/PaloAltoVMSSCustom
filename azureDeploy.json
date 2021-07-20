@@ -271,6 +271,13 @@
             "metadata":{
               "description": "Please specify the Internal Load Balancer Name."
             }
+        },
+        "VirtualMachineScaleSetName": {
+            "type": "string",
+            "defaultValue": "APTVMName",
+            "metadata":{
+              "description": "Please specify the Virtual Machine VM Name."
+            }
         }        
     },
     "variables": {
@@ -681,7 +688,7 @@
                 },
                 "parameters": {
                     "vmssName": {
-                        "value": "[variables('vmssName')]"
+                        "value": "[parameters('VirtualMachineScaleSetName')]"
                     },
                     "vmSize": {
                          "value": "[parameters('vmSeriesFirewallVmSize')]"
