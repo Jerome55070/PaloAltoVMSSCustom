@@ -285,7 +285,19 @@
             "metadata":{
               "description": "Please the name of Application Insights that will monitor the VMSS."
             }
-        }         
+        },
+        "vnetrgname": {
+            "type": "string",
+            "defaultValue": "SecVnetName",
+            "metadata": {
+                "description": "resoruce group name of the existing security vnet"
+            },
+        "vnetrglocation": {
+            "type": "string",
+            "defaultValue": "SecVnetLocation",
+            "metadata": {
+                "description": "resoruce group location of the existing security vnet"
+            }         
     },
     "variables": {
         "location" : "[resourceGroup().location]",
