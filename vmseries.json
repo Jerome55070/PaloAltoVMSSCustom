@@ -188,7 +188,7 @@
             "type": "string",
             "defaultValue": "[newGuid()]"
         },
-        "vnetrgname": {
+        "VnetRGName": {
             "type": "string",
             "defaultValue": "SecVnetName",
             "metadata": {
@@ -198,7 +198,7 @@
     },
     "variables": {
         "rgname": "[resourceGroup().id]",
-        "vnetrgname": "RGSecNet01",
+        "VnetRGName": "RGSecNet01",
         "namingInfix": "[substring(uniqueString(parameters('guidValue')), 0, 5)]",
         "autoscaleName": "[concat('autoscale', variables('namingInfix'))]",
         "nicNameMgmt": "[concat('nicmgmt', variables('namingInfix'))]",
@@ -309,11 +309,11 @@
                                     "name": "[variables('ipConfigNamemgmt')]",
                                     "properties": {
                                         "subnet": {
-                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('vnetrgname'), '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetNameMgmt'))]"
+                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('VnetRGName'), '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetNameMgmt'))]"
                                         },
                                         "loadBalancerBackendAddressPools": [
                                         {
-                                          "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('vnetrgname'), '/providers/Microsoft.Network/loadBalancers/', parameters('fwLbName'), '/backendAddressPools/', 'fw-mgmt-backend-pool')]"
+                                          "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('VnetRGName'), '/providers/Microsoft.Network/loadBalancers/', parameters('fwLbName'), '/backendAddressPools/', 'fw-mgmt-backend-pool')]"
 //                                            "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', variables('fwLbName'), 'fw-mgmt-backend-pool')]"
                                         }],   
                                         "publicIPAddressConfiguration": {
@@ -336,11 +336,11 @@
                                     "name": "[variables('ipConfigNameuntrust')]",
                                     "properties": {
                                         "subnet": {
-                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('vnetrgname'), '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetNameUntrust'))]"
+                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('VnetRGName'), '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetNameUntrust'))]"
                                         },
                                         "loadBalancerBackendAddressPools": [
                                         {
-                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('vnetrgname'), '/providers/Microsoft.Network/loadBalancers/', parameters('fwLbName'), '/backendAddressPools/', 'fw-inbound-backend-pool')]"
+                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('VnetRGName'), '/providers/Microsoft.Network/loadBalancers/', parameters('fwLbName'), '/backendAddressPools/', 'fw-inbound-backend-pool')]"
 //                                           "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', variables('fwLbName'), 'fw-inbound-backend-pool')]"
                                         }]
                                     }
@@ -357,11 +357,11 @@
                                     "name": "[variables('ipConfigNametrust')]",
                                     "properties": {
                                         "subnet": {
-                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('vnetrgname'), '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetNameTrust'))]"
+                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('VnetRGName'), '/providers/Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), '/subnets/', parameters('subnetNameTrust'))]"
                                         },
                                         "loadBalancerBackendAddressPools": [
                                         {
-                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('vnetrgname'), '/providers/Microsoft.Network/loadBalancers/', parameters('fwLbName'), '/backendAddressPools/', 'fw-data-backend-pool')]"
+                                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', variables('VnetRGName'), '/providers/Microsoft.Network/loadBalancers/', parameters('fwLbName'), '/backendAddressPools/', 'fw-data-backend-pool')]"
 //                                            "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', variables('fwLbName'), 'fw-data-backend-pool')]"
                                         }]                                        
                                     }
