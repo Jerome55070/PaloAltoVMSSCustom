@@ -503,6 +503,7 @@
             "condition": "[equals(parameters('deployIntoExistingVnet'), 'Yes')]",
             "name": "SetupPublicLoadBalancer",
             "type": "Microsoft.Resources/deployments",
+            "resourceGroup": "[parameters('VnetRGName')]",
             "apiVersion": "2015-01-01",
             "dependsOn": [
                 "Microsoft.Resources/deployments/SetupVNET"
