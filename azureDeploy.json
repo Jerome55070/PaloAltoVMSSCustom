@@ -477,7 +477,7 @@
                 }
             }
         },
-        {   "condition": "[equals(parameters('deployIntoExistingVnet'), 'No')]",
+        {   "condition": "[equals(parameters('deployIntoExistingVnet'), 'Yes')]",
             "name": "SetupPublicLoadBalancer",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
