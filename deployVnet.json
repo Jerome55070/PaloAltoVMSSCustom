@@ -99,17 +99,11 @@
             "defaultValue": "SecVnetName",
             "metadata": {
                 "description": "resoruce group name of the existing security vnet"
-            },
-        "vnetrglocation": {
-            "type": "string",
-            "defaultValue": "SecVnetLocation",
-            "metadata": {
-                "description": "resoruce group location of the existing security vnet"
             }
+        }
     },
     "variables": {
-        "location": "[parameters('vnetrglocation')]",
-        "rgname": "[parameters('vnetrgname')]",
+        "location": "[resourceGroup().location]",
         "vnetname": "[parameters('virtualNetworkName')]",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('vnetname'))]",
         "subnet0Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet0Name'))]",
