@@ -8,7 +8,7 @@
             "metadata": {
                 "description": "The DNS name for the internet-facing application. Must be globally unique. - Required if deploying into new VNET, Not applicable if deploying into existing VNET."
             },
-            "defaultValue": "YourAppGwDnsName"
+            "defaultValue": "APTIV-AppGateway-PublicDNSName"
         },
         "networkSecurityGroupInboundSrcIP": {
             "type": "string",
@@ -302,7 +302,7 @@
         "fwLbBePoolName_1": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
         "fwLbBePoolName_2": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
         "fwLbBePoolName_3": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",         
-        "appGwBackendPoolName": "[concat(variables('rgname'), '_appGwBepool_', variables('namingInfix'))]",
+        "appGwBackendPoolName": "[concat(parameters('ApplicationGatewayName'), '_ToIntLB_', parameters('InternalLoadBalancerName'))]",
         "vmssName": "[concat('pavmfw', variables('namingInfix'))]",
         "udrName": "defaultBackendUDR",
         "customDataField": "[concat('storage-account=', parameters('bootstrapStorageAccount'), ',access-key=', parameters('bootstrapStorageAccountAccessKey'), ',file-share=', parameters('bootstrapFileShare'),',share-directory=', parameters('bootstrapSharedDir'))]",
