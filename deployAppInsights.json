@@ -9,7 +9,7 @@
         "appInsightsRegion":{
             "type": "string",
             "defaultValue" : "eastus"
-        },
+        }
     },
     "variables": {
         "appInsightsApiVersion": "2015-05-01"
