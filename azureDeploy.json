@@ -286,7 +286,7 @@
               "description": "Please the name of Application Insights that will monitor the VMSS."
             }
         },
-        "vnetrgname": {
+        "VnetRGName": {
             "type": "string",
             "defaultValue": "RGSecNet01",
             "metadata": {
@@ -443,7 +443,7 @@
         {
             "name": "SetupVNET",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2021-05-01",
+            "apiVersion": "2021-01-01",
             "resourceGroup": "[parameters('vnetrgname')]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/SetupNSG",
