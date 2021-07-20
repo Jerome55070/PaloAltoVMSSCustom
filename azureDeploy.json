@@ -1,7 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-
     "parameters": {
         "appGatewayDnsName": {
             "type": "string",
@@ -12,9 +11,9 @@
         },
         "networkSecurityGroupInboundSrcIP": {
             "type": "string",
-             "metadata": {
-                 "description": "The IP address that you want to use to access the management interface on the firewall(s). This IP address will be added to the inbound NSG on eth0(MGMT) to restrict access."
-             }
+            "metadata": {
+                "description": "The IP address that you want to use to access the management interface on the firewall(s). This IP address will be added to the inbound NSG on eth0(MGMT) to restrict access."
+            }
         },
         "fwLoadBalancerIP_01": {
             "type": "string",
@@ -35,15 +34,15 @@
             }
         },
         "deployIntoExistingVnet": {
-             "type": "string",
-             "defaultValue": "No",
-             "allowedValues": [
-                    "Yes",
-                    "No"
-             ],
-             "metadata": {
-                 "description": "If yes, then the template will deploy just the VM-Series firewall and not the app-gw."
-             }
+            "type": "string",
+            "defaultValue": "No",
+            "allowedValues": [
+                "Yes",
+                "No"
+            ],
+            "metadata": {
+                "description": "If yes, then the template will deploy just the VM-Series firewall and not the app-gw."
+            }
         },
         "virtualNetworkName": {
             "type": "string",
@@ -62,10 +61,10 @@
         "mgmtSubnetPrefix": {
             "type": "string",
             "defaultValue": "192.168.0.0/24",
-                    "metadata": {
-                        "description": "CIDR for Management Subnet."
-                    }
-            },
+            "metadata": {
+                "description": "CIDR for Management Subnet."
+            }
+        },
         "untrustSubnetPrefix": {
             "type": "string",
             "defaultValue": "192.168.1.0/24",
@@ -88,16 +87,16 @@
             }
         },
         "vmSeriesFirewallModel": {
-             "type": "string",
-             "defaultValue": "byol",
-             "allowedValues": [
-                    "byol",
-                    "bundle1",
-                    "bundle2"
-             ],
-             "metadata": {
-                 "description": "byol = Bring Your Own License; bundle1 = Bundle 1 PAYG (Hourly); bundle2 = Bundle 2 PAYG (Hourly)"
-             }
+            "type": "string",
+            "defaultValue": "byol",
+            "allowedValues": [
+                "byol",
+                "bundle1",
+                "bundle2"
+            ],
+            "metadata": {
+                "description": "byol = Bring Your Own License; bundle1 = Bundle 1 PAYG (Hourly); bundle2 = Bundle 2 PAYG (Hourly)"
+            }
         },
         "vmSeriesImageVersion": {
             "type": "string",
@@ -112,8 +111,8 @@
             }
         },
         "appInsightsRegion": {
-            "type" : "string",
-            "defaultValue" : "eastus",
+            "type": "string",
+            "defaultValue": "eastus",
             "allowedValues": [
                 "centralcanada",
                 "centralus",
@@ -146,8 +145,8 @@
             }
         },
         "vmSeriesFirewallVmSize": {
-             "type": "string",
-             "allowedValues": [
+            "type": "string",
+            "allowedValues": [
                 "Standard_D3",
                 "Standard_D4",
                 "Standard_D3_v2",
@@ -162,12 +161,12 @@
                 "Standard_DS3_v3",
                 "Standard_DS4_v3",
                 "Standard_DS16_v3",
-                "Standard_A4" 
-             ],
-             "metadata": {
+                "Standard_A4"
+            ],
+            "metadata": {
                 "description": "Azure VM size for VM-Series firewall."
-             },
-             "defaultValue": "Standard_D3_v2"
+            },
+            "defaultValue": "Standard_D3_v2"
         },
         "username": {
             "type": "string",
@@ -185,28 +184,28 @@
         },
         "bootstrapStorageAccount": {
             "type": "string",
-            "metadata":{
-              "description": "The name of the storage account that contains the bootstrap file share."
+            "metadata": {
+                "description": "The name of the storage account that contains the bootstrap file share."
             }
         },
         "bootstrapStorageAccountAccessKey": {
             "type": "securestring",
-            "metadata":{
-              "description": "The access key for the bootstrap storage account."
+            "metadata": {
+                "description": "The access key for the bootstrap storage account."
             }
         },
         "bootstrapFileShare": {
             "type": "string",
-            "metadata":{
+            "metadata": {
                 "description": "The name of the file share that contains the bootstrap folders."
             }
         },
         "bootstrapSharedDir": {
             "type": "string",
             "defaultValue": "None",
-            "metadata":{
-                    "description": "(OPTIONAL) The directory name under file share that contains the bootstrap folders."
-            }   
+            "metadata": {
+                "description": "(OPTIONAL) The directory name under file share that contains the bootstrap folders."
+            }
         },
         "vmScaleSetMinCount": {
             "type": "int",
@@ -223,20 +222,20 @@
             }
         },
         "autoScaleMetric": {
-             "type": "string",
-             "allowedValues": [
-                  "Data Plane CPU Utilization %", 
-                  "GP Gateway Utilization %",
-                  "GP Gateway Active Tunnels",
-                  "Data Plane Packet Buffer Utilization %",
-                  "Active Sessions",
-                  "SSL Proxy Session Utilization %",
-                  "Session Utilization %"                  
-                ], 
-             "defaultValue": "Active Sessions", 
-             "metadata": {
-                 "description": "Select the metric on which to trigger an auto scale event."
-             } 
+            "type": "string",
+            "allowedValues": [
+                "Data Plane CPU Utilization %",
+                "GP Gateway Utilization %",
+                "GP Gateway Active Tunnels",
+                "Data Plane Packet Buffer Utilization %",
+                "Active Sessions",
+                "SSL Proxy Session Utilization %",
+                "Session Utilization %"
+            ],
+            "defaultValue": "Active Sessions",
+            "metadata": {
+                "description": "Select the metric on which to trigger an auto scale event."
+            }
         },
         "scaleInThreshold": {
             "type": "int",
@@ -254,36 +253,36 @@
         },
         "panoramaPluginMessageHandlerUrl": {
             "type": "string",
-            "metadata":{
-              "description": "The Azure Function URL that was created when you launched the Service Bus infrastructure template."
+            "metadata": {
+                "description": "The Azure Function URL that was created when you launched the Service Bus infrastructure template."
             }
         },
         "ApplicationGatewayName": {
             "type": "string",
             "defaultValue": "Aptiv-AppGW-01",
-            "metadata":{
-              "description": "Please specify the Application Gateway Name."
+            "metadata": {
+                "description": "Please specify the Application Gateway Name."
             }
         },
         "InternalLoadBalancerName": {
             "type": "string",
             "defaultValue": "Aptiv-LoadBalancer-01",
-            "metadata":{
-              "description": "Please specify the Internal Load Balancer Name."
+            "metadata": {
+                "description": "Please specify the Internal Load Balancer Name."
             }
         },
         "VirtualMachineScaleSetName": {
             "type": "string",
             "defaultValue": "APTVMName",
-            "metadata":{
-              "description": "Please specify the Virtual Machine VM Name."
+            "metadata": {
+                "description": "Please specify the Virtual Machine VM Name."
             }
         },
         "ApplicationInsightsName": {
             "type": "string",
             "defaultValue": "APTAppInsightName",
-            "metadata":{
-              "description": "Please the name of Application Insights that will monitor the VMSS."
+            "metadata": {
+                "description": "Please the name of Application Insights that will monitor the VMSS."
             }
         },
         "VnetRGName": {
@@ -291,35 +290,35 @@
             "defaultValue": "RGSecNet01",
             "metadata": {
                 "description": "resoruce group name of the existing security vnet"
-			}
-            },
+            }
+        },
         "vnetrglocation": {
             "type": "string",
             "defaultValue": "SecVnetLocation",
             "metadata": {
                 "description": "resoruce group location of the existing security vnet"
             }
-		}        
+        }
     },
     "variables": {
-        "location" : "[resourceGroup().location]",
+        "location": "[resourceGroup().location]",
         "namingInfix": "[substring(uniqueString(resourceGroup().id), 0, 5)]",
-        "rgname" : "[resourceGroup().name]",
-        "networkSecurityGroupName" : "[concat(variables('rgname'), '-mgmt-nsg-', variables('namingInfix'))]",
-        "MgmtSubnetName" : "[concat(parameters('virtualNetworkName'), '-mgmt-subnet')]",
-        "untrustedSubnetName" : "[concat(parameters('virtualNetworkName'), '-untrust-subnet')]",
-        "trustedSubnetName" : "[concat(parameters('virtualNetworkName'), '-trust-subnet')]",
-        "appGatewaySubnetName" : "[concat(parameters('virtualNetworkName'), '-appgw-subnet')]",
-        "LoadBalancerType" : "layer-7",
-        "firewallVmCount" : 2,
-        "baseUrl" : "https://raw.githubusercontent.com/Jerome55070/PaloAltoVMSSCustom/main",
-        "nsgURL" : "[concat(variables('baseUrl'),'/nsg-new.json')]",
-        "vnetURL" : "[concat(variables('baseUrl'),'/deployVnet.json')]",
-        "publicLBURL" : "[concat(variables('baseUrl'),'/public-lb-', variables('LoadBalancerType'), '.json')]",
+        "rgname": "[resourceGroup().name]",
+        "networkSecurityGroupName": "[concat(variables('rgname'), '-mgmt-nsg-', variables('namingInfix'))]",
+        "MgmtSubnetName": "[concat(parameters('virtualNetworkName'), '-mgmt-subnet')]",
+        "untrustedSubnetName": "[concat(parameters('virtualNetworkName'), '-untrust-subnet')]",
+        "trustedSubnetName": "[concat(parameters('virtualNetworkName'), '-trust-subnet')]",
+        "appGatewaySubnetName": "[concat(parameters('virtualNetworkName'), '-appgw-subnet')]",
+        "LoadBalancerType": "layer-7",
+        "firewallVmCount": 2,
+        "baseUrl": "https://raw.githubusercontent.com/Jerome55070/PaloAltoVMSSCustom/main",
+        "nsgURL": "[concat(variables('baseUrl'),'/nsg-new.json')]",
+        "vnetURL": "[concat(variables('baseUrl'),'/deployVnet.json')]",
+        "publicLBURL": "[concat(variables('baseUrl'),'/public-lb-', variables('LoadBalancerType'), '.json')]",
         "defaultUdrSetupURL": "[concat(variables('baseUrl'), '/deployDefaultUDR.json')]",
         "defaultEmptyUdrSetupURL": "[concat(variables('baseUrl'), '/deployEmptyUDR.json')]",
-        "vmseriesURL" : "[concat(variables('baseUrl'),'/vmseries.json')]",
-        "appInsightsApiVersion": "2018-05-01", 
+        "vmseriesURL": "[concat(variables('baseUrl'),'/vmseries.json')]",
+        "appInsightsApiVersion": "2018-05-01",
         "appInsightsComponentsApiVersion": "2018-05-01",
         "networkApiVersion": "2017-06-01",
         "computeApiVersion": "2017-03-30",
@@ -329,7 +328,7 @@
         "appGatewayName": "[concat(variables('rgname'), '_appgw_', variables('namingInfix'))]",
         "fwLbBePoolName_1": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
         "fwLbBePoolName_2": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
-        "fwLbBePoolName_3": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",         
+        "fwLbBePoolName_3": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
         "appGwBackendPoolName": "[concat(parameters('ApplicationGatewayName'), '_ToIntLB_', parameters('InternalLoadBalancerName'))]",
         "vmssName": "[concat('pavmfw', variables('namingInfix'))]",
         "udrName": "defaultBackendUDR",
@@ -341,7 +340,7 @@
             "name": "SetupAppInsights",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "[variables('appInsightsApiVersion')]",
-            "properties": { 
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[variables('appInsightsUrl')]",
@@ -370,7 +369,7 @@
                     "uri": "[concat(parameters('panoramaPluginMessageHandlerUrl'), '&op=PublishCustomMetrics', '&ik=', reference('SetupAppInsights').outputs.instrumentationKey.value, '&subsId=', subscription().subscriptionId, '&rg=', variables('rgname'))]",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters":  {}
+                "parameters": {}
             }
         },
         {
@@ -386,18 +385,19 @@
                     "uri": "[concat(parameters('panoramaPluginMessageHandlerUrl'), '&op=NotifyCompletion', '&subsId=', subscription().subscriptionId, '&rg=', variables('rgname'))]",
                     "contentVersion": "1.0.0.0"
                 },
-                "parameters":  {}
+                "parameters": {}
             }
         },
         {
             "condition": "[equals(parameters('deployIntoExistingVnet'), 'No')]",
             "name": "SetupNSG",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2015-01-01",
+            "resourceGroup": "[parameters('VnetRGName')]",
+            "apiVersion": "2017-05-10",
             "dependsOn": [
                 "Microsoft.Resources/deployments/PublishCustomMetrics"
             ],
-            "properties": { 
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "uri": "[variables('nsgURL')]",
@@ -423,7 +423,8 @@
             "condition": "[equals(parameters('deployIntoExistingVnet'), 'No')]",
             "name": "SetupDefaultUDR",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2015-01-01",
+            "apiVersion": "2017-05-10",
+            "resourceGroup": "[parameters('VnetRGName')]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/SetupNSG"
             ],
@@ -444,7 +445,7 @@
             "name": "SetupVNET",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2021-01-01",
-            "resourceGroup": "[parameters('vnetrgname')]",
+            "resourceGroup": "[parameters('VnetRGName')]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/SetupNSG",
                 "Microsoft.Resources/deployments/SetupDefaultUDR"
@@ -466,31 +467,31 @@
                         "value": "[parameters('virtualNetworkAddressPrefix')]"
                     },
                     "subnet0Name": {
-                         "value": "[variables('MgmtSubnetName')]"
+                        "value": "[variables('MgmtSubnetName')]"
                     },
                     "subnet1Name": {
-                         "value": "[variables('untrustedSubnetName')]"
+                        "value": "[variables('untrustedSubnetName')]"
                     },
                     "subnet2Name": {
-                         "value": "[variables('trustedSubnetName')]"
+                        "value": "[variables('trustedSubnetName')]"
                     },
                     "subnetLBName": {
-                         "value": "[variables('appGatewaySubnetName')]"
+                        "value": "[variables('appGatewaySubnetName')]"
                     },
                     "subnet0Prefix": {
-                         "value": "[parameters('mgmtSubnetPrefix')]"
+                        "value": "[parameters('mgmtSubnetPrefix')]"
                     },
                     "subnet1Prefix": {
-                         "value": "[parameters('untrustSubnetPrefix')]"
+                        "value": "[parameters('untrustSubnetPrefix')]"
                     },
                     "subnet2Prefix": {
-                         "value": "[parameters('trustSubnetPrefix')]"
+                        "value": "[parameters('trustSubnetPrefix')]"
                     },
                     "subnetLBPrefix": {
-                         "value": "[parameters('appGatewaySubnetPrefix')]"
+                        "value": "[parameters('appGatewaySubnetPrefix')]"
                     },
                     "udrName": {
-                         "value": "[variables('udrName')]"
+                        "value": "[variables('udrName')]"
                     },
                     "deployIntoExistingVnet": {
                         "value": "[parameters('deployIntoExistingVnet')]"
@@ -498,7 +499,8 @@
                 }
             }
         },
-        {   "condition": "[equals(parameters('deployIntoExistingVnet'), 'Yes')]",
+        {
+            "condition": "[equals(parameters('deployIntoExistingVnet'), 'Yes')]",
             "name": "SetupPublicLoadBalancer",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
@@ -513,16 +515,16 @@
                 },
                 "parameters": {
                     "lbName": {
-                         "value": "[parameters('ApplicationGatewayName')]"
+                        "value": "[parameters('ApplicationGatewayName')]"
                     },
                     "publicIPAddressName": {
-                         "value": "[parameters('appGatewayDnsName')]"
+                        "value": "[parameters('appGatewayDnsName')]"
                     },
                     "vnetName": {
-                         "value": "[parameters('virtualNetworkName')]"
+                        "value": "[parameters('virtualNetworkName')]"
                     },
                     "subnetName": {
-                         "value": "[variables('appGatewaySubnetName')]"
+                        "value": "[variables('appGatewaySubnetName')]"
                     },
                     "appGwBackendPoolName": {
                         "value": "[variables('appGwBackendPoolName')]"
@@ -622,7 +624,7 @@
                     }
                 ],
                 "loadBalancingRules": [
-                     {
+                    {
                         "name": "fw-data-lb-rule",
                         "properties": {
                             "frontendIPConfiguration": {
@@ -712,7 +714,7 @@
                         "value": "[parameters('VirtualMachineScaleSetName')]"
                     },
                     "vmSize": {
-                         "value": "[parameters('vmSeriesFirewallVmSize')]"
+                        "value": "[parameters('vmSeriesFirewallVmSize')]"
                     },
                     "vmScaleSetMinCount": {
                         "value": "[parameters('vmScaleSetMinCount')]"
@@ -723,20 +725,20 @@
                     "vmSku": {
                         "value": "[parameters('vmSeriesFirewallModel')]"
                     },
-                    "imageVersion": { 
+                    "imageVersion": {
                         "value": "[parameters('vmSeriesImageVersion')]"
                     },
                     "adminUsername": {
-                         "value": "[parameters('username')]"
+                        "value": "[parameters('username')]"
                     },
                     "adminPassword": {
-                         "value": "[parameters('password')]"
+                        "value": "[parameters('password')]"
                     },
                     "customDataField": {
                         "value": "[variables('customDataField')]"
                     },
                     "virtualNetworkName": {
-                         "value": "[parameters('virtualNetworkName')]"
+                        "value": "[parameters('virtualNetworkName')]"
                     },
                     "subnetNameMgmt": {
                         "value": "[variables('MgmtSubnetName')]"
@@ -757,7 +759,7 @@
                         "value": "fw-inbound-backend-pool"
                     },
                     "fwLbBePoolName_3": {
-                         "value": "fw-data-backend-pool"
+                        "value": "fw-data-backend-pool"
                     },
                     "appInsightsName": {
                         "value": "[parameters('ApplicationInsightsName')]"
@@ -775,9 +777,9 @@
                         "value": "[parameters('panoramaPluginMessageHandlerUrl')]"
                     }
                 }
-             }
-           }
-        ],
+            }
+        }
+    ],
     "outputs": {
         "InboundFwVnetName": {
             "value": "[parameters('virtualNetworkName')]",
@@ -806,6 +808,6 @@
         "InboundFwLoadBalancerIP_03": {
             "value": "[parameters('fwLoadBalancerIP_03')]",
             "type": "string"
-        }        
+        }
     }
 }
