@@ -445,7 +445,7 @@
             "name": "SetupVNET",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
-            "ResourceGroupName": "[parameters('vnetrgname')]",
+            "ResourceGroup": "[parameters('vnetrgname')]",
             "dependsOn": [
                 "Microsoft.Resources/deployments/SetupNSG",
                 "Microsoft.Resources/deployments/SetupDefaultUDR"
