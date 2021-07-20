@@ -278,7 +278,14 @@
             "metadata":{
               "description": "Please specify the Virtual Machine VM Name."
             }
-        }        
+        },
+        "ApplicationInsightsName": {
+            "type": "string",
+            "defaultValue": "APTAppInsightName",
+            "metadata":{
+              "description": "Please the name of Application Insights that will monitor the VMSS."
+            }
+        }         
     },
     "variables": {
         "location" : "[resourceGroup().location]",
@@ -302,7 +309,6 @@
         "appInsightsComponentsApiVersion": "2018-05-01",
         "networkApiVersion": "2017-06-01",
         "computeApiVersion": "2017-03-30",
-        "appInsightsName": "[concat(variables('rgname'), '-appinsights-', variables('namingInfix'))]",
         "appInsightsUrl": "[concat(variables('baseUrl'),'/deployAppInsights.json')]",
         "nicNameWorker": "[concat('tempworkernic', variables('namingInfix'))]",
         "workerName": "[concat('tempworker', variables('namingInfix'))]",
@@ -329,7 +335,7 @@
                 },
                 "parameters": {
                     "appInsightsName": {
-                        "value": "[variables('appInsightsName')]"
+                        "value": "[parameters('ApplicationInsightsName')]"
                     },
                     "appInsightsRegion": {
                         "value": "[parameters('appInsightsRegion')]"
@@ -739,7 +745,7 @@
                          "value": "fw-data-backend-pool"
                     },
                     "appInsightsName": {
-                        "value": "[variables('appInsightsName')]"
+                        "value": "[parameters('ApplicationInsightsName')]"
                     },
                     "autoScaleMetric": {
                         "value": "[parameters('autoScaleMetric')]"
