@@ -194,6 +194,7 @@
             "metadata": {
                 "description": "resoruce group name of the existing security vnet"
             }
+        }
     },
     "variables": {
         "rgname": "[resourceGroup().id]",
