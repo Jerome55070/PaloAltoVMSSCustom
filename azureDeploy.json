@@ -256,7 +256,21 @@
             "metadata":{
               "description": "The Azure Function URL that was created when you launched the Service Bus infrastructure template."
             }
-        }
+        },
+        "ApplicationGatewayName": {
+            "type": "string",
+            "defaultValue": "Aptiv-AppGW-01",
+            "metadata":{
+              "description": "Please specify the Application Gateway Name."
+            }
+        },
+        "InternalLoadBalancerName": {
+            "type": "string",
+            "defaultValue": "Aptiv-LoadBalancer-01",
+            "metadata":{
+              "description": "Please specify the Internal Load Balancer Name."
+            }
+        }        
     },
     "variables": {
         "location" : "[resourceGroup().location]",
@@ -285,7 +299,6 @@
         "nicNameWorker": "[concat('tempworkernic', variables('namingInfix'))]",
         "workerName": "[concat('tempworker', variables('namingInfix'))]",
         "appGatewayName": "[concat(variables('rgname'), '_appgw_', variables('namingInfix'))]",
-        "fwLbName": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
         "fwLbBePoolName_1": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
         "fwLbBePoolName_2": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",
         "fwLbBePoolName_3": "[concat(variables('rgname'), '_fw_lb_', variables('namingInfix'))]",         
@@ -471,7 +484,7 @@
                 },
                 "parameters": {
                     "lbName": {
-                         "value": "[variables('appGatewayName')]"
+                         "value": "[parameters('ApplicationGatewayName')]"
                     },
                     "publicIPAddressName": {
                          "value": "[parameters('appGatewayDnsName')]"
@@ -500,7 +513,7 @@
             "tags": {
                 "PanoramaManaged": "yes"
             },
-            "name": "[variables('fwLbName')]",
+            "name": "[parameters('InternalLoadBalancerName')]",
             "apiVersion": "2018-02-01",
             "location": "[variables('location')]",
             "properties": {
@@ -584,7 +597,7 @@
                         "name": "fw-data-lb-rule",
                         "properties": {
                             "frontendIPConfiguration": {
-                                "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', variables('fwLbName'), 'fw-data-frontend')]"
+                                "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', parameters('InternalLoadBalancerName'), 'fw-data-frontend')]"
                             },
                             "frontendPort": 0,
                             "backendPort": 0,
@@ -594,10 +607,10 @@
                             "loadDistribution": "Default",
                             "disableOutboundSnat": false,
                             "backendAddressPool": {
-                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', variables('fwLbName'), 'fw-data-backend-pool')]"
+                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('InternalLoadBalancerName'), 'fw-data-backend-pool')]"
                             },
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('fwLbName')),'/probes/fw_data_health_probe')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('InternalLoadBalancerName')),'/probes/fw_data_health_probe')]"
                             }
                         }
                     },
@@ -605,7 +618,7 @@
                         "name": "fw-mgmt-lb-rule",
                         "properties": {
                             "frontendIPConfiguration": {
-                                "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', variables('fwLbName'), 'fw-mgmt-frontend')]"
+                                "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', parameters('InternalLoadBalancerName'), 'fw-mgmt-frontend')]"
                             },
                             "frontendPort": 0,
                             "backendPort": 0,
@@ -615,10 +628,10 @@
                             "loadDistribution": "Default",
                             "disableOutboundSnat": false,
                             "backendAddressPool": {
-                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', variables('fwLbName'), 'fw-mgmt-backend-pool')]"
+                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('InternalLoadBalancerName'), 'fw-mgmt-backend-pool')]"
                             },
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('fwLbName')),'/probes/fw_mgmt_health_probe')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('InternalLoadBalancerName')),'/probes/fw_mgmt_health_probe')]"
                             }
                         }
                     },
@@ -626,7 +639,7 @@
                         "name": "fw-inbound-lb-rule",
                         "properties": {
                             "frontendIPConfiguration": {
-                                "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', variables('fwLbName'), 'fw-inbound-frontend')]"
+                                "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', parameters('InternalLoadBalancerName'), 'fw-inbound-frontend')]"
                             },
                             "frontendPort": 0,
                             "backendPort": 0,
@@ -636,10 +649,10 @@
                             "loadDistribution": "Default",
                             "disableOutboundSnat": false,
                             "backendAddressPool": {
-                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', variables('fwLbName'), 'fw-inbound-backend-pool')]"
+                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('InternalLoadBalancerName'), 'fw-inbound-backend-pool')]"
                             },
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('fwLbName')),'/probes/fw_inbound_health_probe')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('InternalLoadBalancerName')),'/probes/fw_inbound_health_probe')]"
                             }
                         }
                     }
@@ -706,7 +719,7 @@
                         "value": "[variables('trustedSubnetName')]"
                     },
                     "fwLbName": {
-                        "value": "[variables('fwLbName')]"
+                        "value": "[parameters('InternalLoadBalancerName')]"
                     },
                     "fwLbBePoolName_1": {
                         "value": "fw-mgmt-backend-pool"

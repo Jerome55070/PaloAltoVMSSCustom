@@ -4,7 +4,7 @@
     "parameters": {
         "lbName": {
             "type": "string",
-            "defaultValue": "myPublicLB",
+            "defaultValue": "Aptiv-AppGW-01",
             "metadata": {
                 "description": "Public Load Balancer name"
             } 
