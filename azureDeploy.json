@@ -614,6 +614,7 @@
                                         },
                                         "name": "[parameters('InternalLoadBalancerName')]",
                                         "apiVersion": "2018-02-01",
+                                        "resourceGroup": "[parameters('VnetRGName')]",
                                         "location": "[variables('location')]",
                                         "properties": {
                                             "frontendIPConfigurations": [
