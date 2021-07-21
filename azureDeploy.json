@@ -767,15 +767,17 @@
                                 "outputs": {}
                             }
                         }
+                    }
+                }
+            } 
                     },
-
                     {
                         "name": "SetupVMSeries",
                         "type": "Microsoft.Resources/deployments",
                         "apiVersion": "2015-01-01",
                         "dependsOn": [
                             "Microsoft.Resources/deployments/SetupVNET",
-                            "Microsoft.Resources/deployments/SetupPublicLoadBalancer"
+                            "Microsoft.Resources/deployments/InternalLoadBalancer"
                         ],
                         "properties": {
                             "mode": "Incremental",
